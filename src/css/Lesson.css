@@ -1,0 +1,117 @@
+.lesson {
+	background-color: rgba(132, 186, 191, 0.3);
+	padding: 3% 0;
+	border-radius: 20px;
+	width: 60%;
+	height: 100%;
+	box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.2);
+	background-color: rgba(182, 236, 241, 0.3);
+	border: 1px groove snow;
+	z-index: 4;
+	backdrop-filter: blur(1px);
+	color: #003366;
+	font-size: 16px;
+}
+
+.price__intro {
+	display: flex;
+	flex-direction: row;
+	text-align: left;
+	gap: 10rem;
+	padding: 0.5rem 10rem;
+	line-height: 1rem;
+}
+
+.price__intro--centered {
+	text-align: center;
+}
+
+.price__intro--bold {
+	text-align: center;
+	align-items: center;
+	font-weight: bold;
+	padding: 0 10rem;
+}
+
+.container {
+	width: 100%;
+	margin: 1.5rem auto;
+	overflow: hidden;
+	padding: 1.5rem 10rem 0 10rem;
+}
+
+.schedule {
+	display: flex;
+	justify-content: center;
+	gap: 5rem;
+	margin-bottom: 1rem;
+}
+
+.info {
+	text-align: center;
+}
+
+.title {
+	padding-top: 1.5rem;
+}
+
+.table {
+	width: 100%;
+	max-width: 768px;
+	border-collapse: collapse;
+	color: #4a4a4a;
+	background-color: #ffffff;
+	margin: 3% auto 5% auto;
+	box-shadow: 0 -0.125rem 0.25rem 0 rgb(0 0 0 / 11%);
+}
+
+.thead {
+	background-color: #efefef;
+}
+
+.th {
+	padding: 15px 20px;
+	border: 1px solid #dddddd;
+	font-weight: bold;
+	text-align: center;
+}
+
+.td {
+	padding: 15px 20px;
+	border: 1px solid #dddddd;
+	text-align: center;
+}
+
+.centered {
+	text-align: center;
+}
+
+@media (max-width: 768px) {
+	.lesson {
+		width: 90%;
+		height: auto;
+		overflow-x: hidden;
+	}
+	.price__intro {
+		padding: 0 1rem;
+	}
+	.price__intro--centered {
+		text-align: center;
+		padding: 0 3rem;
+	}
+	.container {
+		width: 100%;
+		padding: 1.5rem 1rem 0 1rem;
+	}
+	.schedule {
+		gap: 1rem;
+	}
+	.table {
+		width: 90%;
+		overflow-x: auto;
+	}
+	.th,
+	.td {
+		font-size: 0.9rem;
+	}
+}
