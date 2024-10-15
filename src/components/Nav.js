@@ -7,6 +7,7 @@ function Nav() {
 	const [showLinks, setShowLinks] = useState(false);
 
 	const logo = require("../assets/kgb-logo.jpeg");
+
 	const navItems = [
 		{ to: "lesson_section", name: "강습" },
 		{ to: "contact_form_section", name: "문의하기" },

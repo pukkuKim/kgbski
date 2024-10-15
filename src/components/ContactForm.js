@@ -19,7 +19,7 @@ function ContactForm() {
 		length: Yup.string().required("강습 길이를 선택해주세요"),
 		lessonType: Yup.string().required("강습 타입을 선택해주세요"),
 		multiSelect: Yup.array().when("length", {
-			is: (length) => length === "option1",
+			is: (length) => length === "2시간",
 			then: (schema) =>
 				schema
 					.length(
@@ -31,7 +31,7 @@ function ContactForm() {
 					),
 			otherwise: (schema) =>
 				schema.when("length", {
-					is: (length) => length === "option2",
+					is: (length) => length === "4시간",
 					then: (schema) =>
 						schema
 							.length(
@@ -44,8 +44,19 @@ function ContactForm() {
 				}),
 		}),
 		date: Yup.date().required("강습 날짜를 선택해주세요").nullable(),
-		name: Yup.string().required("성함을 기입해주세요"),
-		phone: Yup.string().required("전화번호를 기입해주세요"),
+		name: Yup.string()
+			.required("성함을 기입해주세요")
+			.max(20, "성함은 20자 이하로 기입해주세요")
+			.matches(
+				/^[a-zA-Z가-힣\s]+$/,
+				"영어 또는 한글만 사용할 수 있습니다"
+			),
+		phone: Yup.string()
+			.required("전화번호를 기입해주세요")
+			.matches(
+				/^(02\d{7}|[0-9]{3}\d{3,4}\d{4})$/,
+				"전화번호 형식이 유효하지 않습니다"
+			),
 		email: Yup.string()
 			.email("정확한 이메일을 기입해주세요")
 			.required("이메일 주소를 기입해주세요"),
@@ -68,7 +79,7 @@ function ContactForm() {
 		};
 
 		const response = await fetch(
-			"https://formsubmit.co/goldie.kim89@gmail.com",
+			"https://formsubmit.co/kgb_winter@naver.com",
 			{
 				method: "POST",
 				headers: {
@@ -102,8 +113,8 @@ function ContactForm() {
 								<label>장소:</label>
 								<Field as="select" name="place">
 									<option value="">선택하세요</option>
-									<option value="option1">용평</option>
-									<option value="option2">알펜시아</option>
+									<option value="용평">용평</option>
+									<option value="알펜시아">알펜시아</option>
 								</Field>
 							</div>
 							<ErrorMessage
@@ -116,8 +127,8 @@ function ContactForm() {
 								<label>길이:</label>
 								<Field as="select" name="length">
 									<option value="">선택하세요</option>
-									<option value="option1">2시간 강습</option>
-									<option value="option2">4시간 강습</option>
+									<option value="2시간">2시간 강습</option>
+									<option value="4시간">4시간 강습</option>
 								</Field>
 							</div>
 							<ErrorMessage
@@ -130,8 +141,8 @@ function ContactForm() {
 								<label>개인/그룹:</label>
 								<Field as="select" name="lessonType">
 									<option value="">선택하세요</option>
-									<option value="option1">1:1 강습</option>
-									<option value="option2">2:1 강습</option>
+									<option value="개인레슨">1:1 강습</option>
+									<option value="그룹레슨">2:1 강습</option>
 								</Field>
 							</div>
 							<ErrorMessage
@@ -152,11 +163,11 @@ function ContactForm() {
 									multiple
 									className="multiSelect"
 								>
-									<option value="option1">1교시</option>
-									<option value="option2">2교시</option>
-									<option value="option3">3교시</option>
-									<option value="option4">4교시</option>
-									<option value="option5">5교시</option>
+									<option value="1교시">1교시</option>
+									<option value="2교시">2교시</option>
+									<option value="3교시">3교시</option>
+									<option value="4교시">4교시</option>
+									<option value="5교시">5교시</option>
 								</Field>
 							</div>
 							<ErrorMessage
@@ -166,8 +177,13 @@ function ContactForm() {
 							/>
 
 							<div className="form-group inline">
-								<label>날짜:</label>
-								<Field type="date" name="date" />
+								{/* <label>날짜:</label> */}
+								<label htmlFor="date">날짜:</label>
+								<Field
+									type="date"
+									name="date"
+									min={new Date().toISOString().split("T")[0]}
+								/>
 							</div>
 							<ErrorMessage
 								name="date"

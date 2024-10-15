@@ -1,7 +1,7 @@
 import "../css/App.css";
 import Nav from "./Nav";
-import { useCallback, useEffect } from "react";
-import Particles from "react-tsparticles";
+import { useEffect } from "react";
+import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadFull } from "tsparticles";
 import axios from "axios";
 import Lesson from "./Lesson";
@@ -27,13 +27,15 @@ function App() {
 		fetchData();
 	}, []);
 
-	const particlesInit = useCallback(async (engine) => {
-		await loadFull(engine);
+	useEffect(() => {
+		initParticlesEngine(async (engine) => {
+			await loadFull(engine);
+		});
 	}, []);
 
-	const particlesLoaded = useCallback(async (container) => {
-		await console.log(container);
-	}, []);
+	const particlesLoaded = (container) => {
+		console.log(container);
+	};
 
 	return (
 		<div className="App">
@@ -41,8 +43,7 @@ function App() {
 				<Particles
 					id="tsparticles"
 					url="particlesjs-config.json"
-					init={particlesInit}
-					loaded={particlesLoaded}
+					particlesLoaded={particlesLoaded}
 				/>
 			</div>
 

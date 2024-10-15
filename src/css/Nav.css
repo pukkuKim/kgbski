@@ -49,6 +49,7 @@ li {
 	}
 	.nav__container__actions {
 		justify-content: end;
+		background-color: rgba(251, 251, 251, 0);
 	}
 	.sideBarIcon {
 		position: absolute;
@@ -62,13 +63,16 @@ li {
 	}
 	.links {
 		position: relative;
-		top: 60px;
+		top: 190px;
 		z-index: 100;
-		width: 100%;
-		background-color: rgb(5, 23, 23);
+		width:100%;
+        max-width: 412px;
+		margin: 0 auto;
+		background-color: snow;
 		flex-direction: column;
 		padding: 50px;
 		border-radius: 20px;
 		box-shadow: 5px 2px 4px rgba(0, 0, 0, 0.1);
+        gap: 3rem;
 	}
 }
