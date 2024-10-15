@@ -48,7 +48,10 @@ function ContactForm() {
 		date: Yup.date()
 			.required("희망 강습날짜를 선택해주세요")
 			.nullable()
-			.min(new Date(), "오늘 이후의 날짜를 선택해주세요"),
+			.min(
+				new Date(Date.now() + 86400000),
+				"내일 이후의 날짜를 선택해주세요"
+			),
 		name: Yup.string()
 			.required("성함을 기입해주세요")
 			.max(20, "성함은 20자 이하로 기입해주세요")
@@ -68,30 +71,26 @@ function ContactForm() {
 	});
 
 	const handleSubmit = async (values) => {
-		const message = `
-            전화번호: ${values.phone}
-            장소: ${values.place}
-            강습시간: ${values.length}
-            스키/보드: ${values.equipment}
-            개인/그룹: ${values.lessonType}
-            희망교시: ${values.multiSelect.join(", ")}
-            희망날짜: ${values.date}
-        `;
-
-		const payload = {
-			성함: values.name,
-			이메일: values.email,
-			message: message.trim(),
-		};
-
 		const response = await fetch(
-			"https://formsubmit.co/kgb_winter@naver.com",
+			process.env.REACT_APP_DISCORD_WEBHOOK_URL,
 			{
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
 				},
-				body: JSON.stringify(payload),
+				body: JSON.stringify({
+					content: `
+                성함: ${values.name}
+이메일: ${values.email}
+전화번호: ${values.phone}
+장소: ${values.place}
+강습시간: ${values.length}
+스키/보드: ${values.equipment}
+개인/그룹: ${values.lessonType}
+희망교시: ${values.multiSelect.join(", ")}
+희망날짜: ${values.date}
+            `,
+				}),
 			}
 		);
 
@@ -197,12 +196,15 @@ function ContactForm() {
 							/>
 
 							<div className="form-group inline">
-								{/* <label>날짜:</label> */}
 								<label htmlFor="date">날짜:</label>
 								<Field
 									type="date"
 									name="date"
-									min={new Date().toISOString().split("T")[0]}
+									min={
+										new Date(Date.now() + 86400000)
+											.toISOString()
+											.split("T")[0]
+									}
 								/>
 							</div>
 							<ErrorMessage
