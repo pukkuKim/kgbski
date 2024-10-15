@@ -4,20 +4,22 @@ import "../css/ContactForm.css";
 
 function ContactForm() {
 	const initialValues = {
-		name: "",
-		email: "",
-		phone: "",
 		place: "",
 		length: "",
+		equipment: "",
 		lessonType: "",
 		multiSelect: [],
 		date: "",
+		name: "",
+		phone: "",
+		email: "",
 	};
 
 	const validationSchema = Yup.object().shape({
 		place: Yup.string().required("장소를 선택해주세요"),
-		length: Yup.string().required("강습 길이를 선택해주세요"),
+		length: Yup.string().required("강습시간을 선택해주세요"),
 		lessonType: Yup.string().required("강습 타입을 선택해주세요"),
+		equipment: Yup.string().required("레슨 장비를 선택해주세요"),
 		multiSelect: Yup.array().when("length", {
 			is: (length) => length === "2시간",
 			then: (schema) =>
@@ -43,7 +45,10 @@ function ContactForm() {
 							),
 				}),
 		}),
-		date: Yup.date().required("강습 날짜를 선택해주세요").nullable(),
+		date: Yup.date()
+			.required("희망 강습날짜를 선택해주세요")
+			.nullable()
+			.min(new Date(), "오늘 이후의 날짜를 선택해주세요"),
 		name: Yup.string()
 			.required("성함을 기입해주세요")
 			.max(20, "성함은 20자 이하로 기입해주세요")
@@ -64,17 +69,18 @@ function ContactForm() {
 
 	const handleSubmit = async (values) => {
 		const message = `
-            Phone: ${values.phone}
-            Place: ${values.place}
-            Length: ${values.length}
-            Lesson Type: ${values.lessonType}
-            Multi-Select: ${values.multiSelect.join(", ")}
-            Date: ${values.date}
+            전화번호: ${values.phone}
+            장소: ${values.place}
+            강습시간: ${values.length}
+            스키/보드: ${values.equipment}
+            개인/그룹: ${values.lessonType}
+            희망교시: ${values.multiSelect.join(", ")}
+            희망날짜: ${values.date}
         `;
 
 		const payload = {
-			name: values.name,
-			email: values.email,
+			성함: values.name,
+			이메일: values.email,
 			message: message.trim(),
 		};
 
@@ -124,7 +130,7 @@ function ContactForm() {
 							/>
 
 							<div className="form-group inline">
-								<label>길이:</label>
+								<label>강습시간:</label>
 								<Field as="select" name="length">
 									<option value="">선택하세요</option>
 									<option value="2시간">2시간 강습</option>
@@ -133,6 +139,20 @@ function ContactForm() {
 							</div>
 							<ErrorMessage
 								name="length"
+								component="div"
+								className="error-message"
+							/>
+
+							<div className="form-group inline">
+								<label>스키/보드:</label>
+								<Field as="select" name="equipment">
+									<option value="">선택하세요</option>
+									<option value="스키">스키</option>
+									<option value="보드">스노우보드</option>
+								</Field>
+							</div>
+							<ErrorMessage
+								name="equipment"
 								component="div"
 								className="error-message"
 							/>
