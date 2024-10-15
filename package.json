@@ -1,6 +1,6 @@
 {
     "homepage": "https://pukkukim.github.io/kgbski",
-	"name": "kgbski-frontend",
+	"name": "kgbski",
 	"version": "0.0.1",
 	"private": true,
 	"dependencies": {
@@ -58,6 +58,5 @@
 	},
 	"devDependencies": {
 		"gh-pages": "^5.0.0"
-	},
-	"proxy": "http://localhost:8000"
+	}
 }
