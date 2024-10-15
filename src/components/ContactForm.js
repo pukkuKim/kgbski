@@ -48,10 +48,7 @@ function ContactForm() {
 		date: Yup.date()
 			.required("희망 강습날짜를 선택해주세요")
 			.nullable()
-			.min(
-				new Date(Date.now() + 86400000),
-				"내일 이후의 날짜를 선택해주세요"
-			),
+			.min(new Date(Date.now()), "내일 이후의 날짜를 선택해주세요"),
 		name: Yup.string()
 			.required("성함을 기입해주세요")
 			.max(20, "성함은 20자 이하로 기입해주세요")
