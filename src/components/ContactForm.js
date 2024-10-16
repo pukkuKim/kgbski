@@ -77,7 +77,6 @@ function ContactForm() {
 				},
 				body: JSON.stringify({
 					content: `
-                \n
 성함: ${values.name}
 이메일: ${values.email}
 전화번호: ${values.phone}
@@ -87,8 +86,8 @@ function ContactForm() {
 개인/그룹: ${values.lessonType}
 희망교시: ${values.multiSelect.join(", ")}
 희망날짜: ${values.date}
-\n
-            `,
+============================
+                    `,
 				}),
 			}
 		);
