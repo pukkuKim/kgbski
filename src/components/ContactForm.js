@@ -86,7 +86,7 @@ function ContactForm() {
 개인/그룹: ${values.lessonType}
 희망교시: ${values.multiSelect.join(", ")}
 희망날짜: ${values.date}
-============================
+======================================
                     `,
 				}),
 			}
