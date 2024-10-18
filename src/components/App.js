@@ -11,7 +11,7 @@ import ContactUs from "./ContactUs";
 import Footer from "./Footer";
 
 function App() {
-	useEffect(() => {
+    useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await axios.get(
