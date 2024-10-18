@@ -26,7 +26,7 @@ function Nav() {
 
 	return (
 		<nav className="nav__container__actions">
-			<a className="logoContainer" href="/">
+			<a className="logoContainer" href="/kgbski">
 				<img className="logo_image" src={logo} />
 			</a>
 			<ul className={showLinks ? "links" : "links hide"}>
