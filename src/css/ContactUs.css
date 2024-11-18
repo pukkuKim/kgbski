@@ -1,11 +1,10 @@
 .contact {
-	background-color: rgba(132, 186, 191, 0.6);
 	padding: 3% 0;
 	border-radius: 20px;
 	width: 60%;
 	height: 100%;
 	box-shadow: 0px 0px 8px 4px rgba(0, 0, 0, 0.2);
-	background-color: rgba(182, 236, 241, 0.3);
+	background-color: rgba(182, 236, 241, 0.5);
 	border: 1px groove snow;
 	z-index: 4;
 	backdrop-filter: blur(1px);

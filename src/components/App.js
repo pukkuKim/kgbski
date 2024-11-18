@@ -7,6 +7,7 @@ import axios from "axios";
 import Lesson from "./Lesson";
 import ContactForm from "./ContactForm";
 import Gallery from "./Gallery";
+import Video from "./Video";
 import ContactUs from "./ContactUs";
 import Footer from "./Footer";
 
@@ -57,6 +58,9 @@ function App() {
 			</section>
 			<section id="gallery_section">
 				<Gallery />
+			</section>
+			<section id="video_section">
+				<Video />
 			</section>
 			<section id="contact_section">
 				<ContactUs />
