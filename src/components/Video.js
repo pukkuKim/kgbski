@@ -22,8 +22,8 @@ function Video() {
     useEffect(() => {
         const baseUrl = "https://storage.googleapis.com/kgbski/";
         const urls = Array.from(
-            { length: 8 },
-            (_, i) => `${baseUrl}${i + 1}.mp4`
+            { length: 10 },
+            (_, i) => `${baseUrl}${i}.mp4`
         );
         setVideoUrls(urls);
     }, []);

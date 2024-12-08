@@ -20,6 +20,11 @@
 	padding-bottom: 2.5% !important;
 }
 
+.slick-track {
+    display: flex;
+    align-items: center;
+}
+
 .slick-dots li button {
 	box-shadow: none;
 }
